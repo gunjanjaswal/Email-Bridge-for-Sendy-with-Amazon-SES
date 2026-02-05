@@ -19,7 +19,7 @@ A powerful, visual newsletter builder for Sendy. Create beautiful, responsive ca
 *   **🎨 Visual Newsletter Builder:** Drag-and-drop workflow to build emails in seconds.
 *   **📱 Fully Responsive Layout:** 
     *   **Hero Section:** Highlights your feature story with a robust, integrated banner.
-    *   **Grid System:** Automatically stacks 2-column grids into a single column on mobile for perfect readability.
+    *   **Grid System:** Responsive design that displays **2 columns on Desktop** and stacks to a **single column on Mobile** for perfect readability.
     *   **Auto-Height Cards:** Eliminates ugly whitespace on diverse screen sizes (Desktop & Mobile).
 *   **🔍 Instant Post Search:** AJAX-powered search lets you find and add any post from your library instantly.
 *   **🖼️ Smart Image Handling:** 

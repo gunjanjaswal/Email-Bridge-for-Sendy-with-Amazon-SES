@@ -10,11 +10,11 @@ Create beautiful, responsive newsletters directly from your WordPress posts and 
 ## ✨ Features
 
 ### 🎨 Visual Newsletter Builder
-*   **Hero + Grid Layout:** Automatically formats your first selected post as a featured "Hero" card, and subsequent posts as a neat 2-column grid.
+*   **Hero + Grid Layout:** Automatically formats your first selected post as a featured "Hero" card, and subsequent posts as a neat **2-column grid** (on desktop).
 *   **Live Preview:** See exactly what your email will look like as you add posts.
 
 ### 📱 Mobile-First Responsive Design
-*   **Smart Stacking:** Grid items automatically switch to a single-column layout on mobile devices (< 600px).
+*   **Smart Stacking:** Grid items automatically switch to a **single-column layout** on mobile devices (< 600px).
 *   **Auto-Height:** Cards adjust their height dynamically to fit content, removing awkward whitespace on small screens.
 *   **Readable Typography:** Optimized font sizes and spacing for mobile reading.
 
