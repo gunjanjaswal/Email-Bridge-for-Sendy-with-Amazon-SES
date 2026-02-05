@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Simple Sendy SES Bridge
- * Plugin URI:  https://gunjanjaswal.me
+ * Plugin URI:  https://github.com/gunjanjaswal/Simple-Sendy-SES-Bridge
  * Description: Connects WordPress to Sendy (via Amazon SES) to create and send newsletters from your content.
  * Version:     1.0.0
  * Author:      Gunjan Jaswal
