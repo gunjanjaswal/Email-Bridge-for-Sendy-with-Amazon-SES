@@ -93,11 +93,6 @@ jQuery(document).ready(function ($) {
         selectedPosts.push({ id: postId, title, thumbnail, excerpt, link, content });
         renderSelectedPosts();
         updatePreview();
-
-        // Change clicked button to "Remove"
-        $(this).removeClass('sssb-add-post button-small')
-            .addClass('sssb-remove-post-from-search button-link-delete')
-            .text('Remove');
     });
 
     // Remove Post
@@ -109,38 +104,6 @@ jQuery(document).ready(function ($) {
             selectedPosts.splice(index, 1);
             renderSelectedPosts();
             updatePreview();
-
-            // Re-render search list to update button state if the item is visible there
-            // Or simpler: find the button in search results and reset it
-            const $searchBtn = $(`.sssb-remove-post-from-search[data-id="${postId}"]`);
-            if ($searchBtn.length) {
-                const post = $searchBtn.data('post-obj');
-                // We need to restore the "Add" button. 
-                // Since we don't have the full post object easily here unless we store it, 
-                // we can just reload the search or manually swap classes/text if we kept the data.
-                // A simpler way: just trigger a re-render of the current search results if we have them?
-                // Let's just swap the button appearance.
-                $searchBtn.removeClass('sssb-remove-post-from-search button-link-delete')
-                    .addClass('sssb-add-post button-small')
-                    .text('Add');
-            }
-        }
-    });
-
-    // Remove Post via Search Result Button (New Handler)
-    $(document).on('click', '.sssb-remove-post-from-search', function (e) {
-        e.preventDefault();
-        const postId = $(this).data('id');
-        const index = selectedPosts.findIndex(p => p.id === postId);
-        if (index > -1) {
-            selectedPosts.splice(index, 1);
-            renderSelectedPosts();
-            updatePreview();
-
-            // Swap this button back to Add
-            $(this).removeClass('sssb-remove-post-from-search button-link-delete')
-                .addClass('sssb-add-post button-small')
-                .text('Add');
         }
     });
 
@@ -218,26 +181,18 @@ jQuery(document).ready(function ($) {
             html = '<p>No posts found.</p>';
         } else {
             posts.forEach(post => {
-                const isSelected = selectedPosts.some(p => p.id === post.id);
-                let btnHtml = '';
-
-                if (isSelected) {
-                    btnHtml = `<button class="button button-link-delete sssb-remove-post-from-search" data-id="${post.id}">Remove</button>`;
-                } else {
-                    btnHtml = `<button class="button button-small sssb-add-post" 
+                html += `
+                    <div class="sssb-post-item">
+                        <img src="${post.thumbnail}" alt="">
+                        <div>
+                            <strong>${post.title}</strong>
+                            <br>
+                            <button class="button button-small sssb-add-post" 
                                 data-id="${post.id}" 
                                 data-title="${post.title}" 
                                 data-thumbnail="${post.thumbnail}" 
                                 data-excerpt="${post.excerpt}"
-                                data-link="${post.link}">Add</button>`;
-                }
-
-                html += `
-                    <div class="sssb-post-item" style="display:flex; align-items:center; margin-bottom:10px; border-bottom:1px solid #eee; padding-bottom:10px;">
-                        <img src="${post.thumbnail}" alt="" style="width:50px; height:50px; object-fit:cover; margin-right:10px; border-radius:4px;">
-                        <div style="flex-grow:1;">
-                            <strong>${post.title}</strong>
-                            <div style="margin-top:5px;">${btnHtml}</div>
+                                data-link="${post.link}">Add</button>
                         </div>
                     </div>
                 `;
@@ -250,9 +205,9 @@ jQuery(document).ready(function ($) {
         let html = '';
         selectedPosts.forEach(post => {
             html += `
-                <div class="sssb-selected-item" style="display:flex; justify-content:space-between; align-items:center; padding:8px; background:#f0f0f1; margin-bottom:5px; border-radius:4px;">
-                    <span style="font-weight:500;">${post.title}</span>
-                    <a href="#" class="sssb-remove-post" data-id="${post.id}" style="color:#d63638; text-decoration:none; font-size:13px;">Remove</a>
+                <div class="sssb-selected-item">
+                    <span>${post.title}</span>
+                    <a href="#" class="sssb-remove-post" data-id="${post.id}">Remove</a>
                 </div>
             `;
         });
@@ -274,21 +229,6 @@ jQuery(document).ready(function ($) {
             table, td { border-collapse: collapse; }
             .container { width: 100%; max-width: 680px; margin: auto; background-color: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 34px rgba(0, 0, 0, 0.10); }
             a { text-decoration: underline; color: #ffffff !important; }
-            
-            /* Mobile Responsive */
-            @media screen and (max-width: 600px) {
-                .responsive-td {
-                    display: block !important;
-                    width: 100% !important;
-                    box-sizing: border-box !important;
-                    padding-left: 0 !important;
-                    padding-right: 0 !important;
-                    padding-bottom: 20px !important;
-                }
-                .sssb-card-table {
-                    height: auto !important;
-                }
-            }
             </style>
         </head>
         <body style="margin: 0; padding: 0; background-color: #f1f5f9;">
@@ -307,11 +247,11 @@ jQuery(document).ready(function ($) {
                     <img src="${currentBanner}" style="width: 100%; height: auto; display: block; border-top-left-radius: 12px; border-top-right-radius: 12px;" />
                     <div style="padding: 22px;">
                         <h2 style="margin-top: 0; color: #0f172a; text-align: center;">${heroPost.title}</h2>
-
+                        
                         <table border="0" cellpadding="0" cellspacing="0" style="margin: auto;">
                             <tr>
                                 <td style="background: #0f172a; border-radius: 10px; padding: 12px 22px; text-align: center;">
-                                    <a href="${heroPost.link}" style="color: #ffffff !important; font-size: 14px; text-decoration: none; display: block; font-weight: 600;">Read More</a>
+                                    <a href="${heroPost.link}" style="color: #ffffff !important; font-size: 14px; text-decoration: none; display: block; font-weight: 600;">Explore Insights</a>
                                 </td>
                             </tr>
                         </table>
@@ -393,8 +333,8 @@ jQuery(document).ready(function ($) {
         // Enforce consistent card height (e.g., 440px) to keep rows even
         // Image is now auto-height (proportional) and centered, max-width reduced to 250px
         return `
-        <td class="responsive-td" style="padding:10px; vertical-align: top;" valign="top" width="50%">
-            <table class="sssb-card-table" cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0; border-radius:12px; width: 100%; height: 480px; table-layout: fixed; background-color: #ffffff;">
+        <td style="padding:10px; vertical-align: top;" valign="top" width="50%">
+            <table cellpadding="0" cellspacing="0" style="border:1px solid #e2e8f0; border-radius:12px; width: 100%; height: 440px; table-layout: fixed; background-color: #ffffff;">
                 <tbody>
                     <tr>
                         <td align="center" valign="middle" style="height: 220px; vertical-align: middle; padding: 0;">

@@ -67,6 +67,18 @@ class SSSB_Admin_Settings
         );
 
         add_settings_field(
+            'brand_id',
+            __('Brand ID (Optional)', 'simple-sendy-ses-bridge'),
+            array($this, 'render_text_field'),
+            'simple_sendy_bridge',
+            'sssb_main_section',
+            array(
+                'field' => 'brand_id',
+                'desc' => __('Found in Sendy Settings > Your Brand > ID (Required for some Sendy versions)', 'simple-sendy-ses-bridge')
+            )
+        );
+
+        add_settings_field(
             'from_name',
             __('Default From Name', 'simple-sendy-ses-bridge'),
             array($this, 'render_text_field'),
@@ -138,6 +150,9 @@ class SSSB_Admin_Settings
         if (isset($input['api_key'])) {
             $new_input['api_key'] = sanitize_text_field($input['api_key']);
         }
+        if (isset($input['brand_id'])) {
+            $new_input['brand_id'] = sanitize_text_field($input['brand_id']);
+        }
         if (isset($input['from_name'])) {
             $new_input['from_name'] = sanitize_text_field($input['from_name']);
         }
@@ -207,7 +222,7 @@ class SSSB_Admin_Settings
                 <h3><?php esc_html_e('Support', 'simple-sendy-ses-bridge'); ?></h3>
                 <p><?php esc_html_e('If you like this plugin, please consider buying me a coffee!', 'simple-sendy-ses-bridge'); ?></p>
                 <p>
-                    <a href="https://buymeacoffee.com/gunjanjaswal" target="_blank" class="button button-default">
+                    <a href="https://buymeacoffee.com/gunjanjaswal" target="_blank" class="button" style="background-color: #FFDD00 !important; color: #000000 !important; border-color: #FFDD00 !important; font-weight: bold;">
                         <?php esc_html_e('☕ Buy Me A Coffee', 'simple-sendy-ses-bridge'); ?>
                     </a>
                 </p>

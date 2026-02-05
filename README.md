@@ -1,76 +1,63 @@
-# Simple Sendy SES Bridge 📧
+# 📧 Simple Sendy SES Bridge
 
-> **Connect WordPress with Sendy & Amazon SES to create beautiful newsletters in seconds.**
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-aaaaaa.svg) ![License](https://img.shields.io/badge/license-GPLv2-green.svg)
 
-![License](https://img.shields.io/badge/license-GPL--2.0%2B-blue.svg)
-![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
-![WordPress](https://img.shields.io/badge/WordPress-6.9%2B-blue.svg)
-Tested up to: 6.9
+**Connect WordPress to Sendy with style.**
+Create beautiful, responsive newsletters directly from your WordPress posts and send them via your Sendy installation (Amazon SES).
 
-**Simple Sendy SES Bridge** is a powerful WordPress plugin that bridges the gap between your content and your subscribers. Say goodbye to copy-pasting content into Sendy. Select your posts, choose a layout, and send campaigns directly from your WP dashboard.
+---
 
-## 🚀 Features
+## ✨ Features
 
-*   **🔌 Seamless Integration**: Connects directly to your self-hosted Sendy installation via API.
-*   **📰 Content Selector**: Search and select any WordPress post to add to your newsletter.
-*   **✨ Custom Template**: Enforced "Hero + Grid" layout designed for engagement:
-    *   **Hero Section**: Highlights your primary story.
-    *   **Grid Layout**: Displays subsequent stories in a clean 2-column grid.
-    *   **Dynamic Footer**: Global settings for Logo, Copyright, and Social Links.
-*   **🖼️ Banner Support**: Add a custom header image from your Media Library.
-*   **📋 Saved Lists**: Pre-configure your Sendy lists in settings for easy selection (supports sending to multiple lists).
-*   **📱 Mobile Optimized**: All layouts and images are optimized for mobile devices.
-*   **🗓️ Scheduled Sending**: Schedule your newsletters to be sent at a specific date and time.
-*   **🧪 Test Emails**: Send test emails to yourself to verify the design (requires SMTP plugin).
-*   **🔗 Smart Linking**: Featured images are automatically linked to your articles.
+### 🎨 Visual Newsletter Builder
+*   **Hero + Grid Layout:** Automatically formats your first selected post as a featured "Hero" card, and subsequent posts as a neat 2-column grid.
+*   **Live Preview:** See exactly what your email will look like as you add posts.
 
-## 🛠️ Installation
+### 📱 Mobile-First Responsive Design
+*   **Smart Stacking:** Grid items automatically switch to a single-column layout on mobile devices (< 600px).
+*   **Auto-Height:** Cards adjust their height dynamically to fit content, removing awkward whitespace on small screens.
+*   **Readable Typography:** Optimized font sizes and spacing for mobile reading.
 
-1.  **Upload** the `simple-sendy-ses-bridge` folder to your `/wp-content/plugins/` directory.
-2.  **Activate** the plugin through the 'Plugins' menu in WordPress.
-3.  **Navigate** to **Sendy Bridge > Settings** to configure your connection.
+### 🖼️ Professional Media Handling
+*   **Integrated Banners:** Banner images are fully integrated into the Hero card with rounded corners.
+*   **No-Crop Scaling:** Banners use `height: auto` to ensure 100% of your image content is visible (no heads or text cut off).
+*   **High-Res Thumbnails:** Uses the 'Large' image size to prevent blurriness on retina screens.
 
-## ⚙️ Configuration
+### 🛠️ Powerful Admin Tools
+*   **Instant Search:** AJAX search bar to find any post in your database.
+*   **Campaign Management:** 
+    *   **Status Columns:** View `Draft`, `Sent`, or `Scheduled` status directly in the campaign list.
+    *   **Scheduling:** Set a date/time for your campaign, and WP-Cron will trigger the send automatically.
+    *   **Status Indicators:** Color-coded statuses (Green for Sent, Orange for Scheduled).
 
-You'll need the following from your Sendy installation:
+### 🏷️ Keywords
+`Sendy` `Amazon SES` `Newsletter Builder` `Email Marketing` `WordPress Newsletter` `Drag and Drop` `Post to Email` `Responsive Email Template` `Email Automation` `Campaign Scheduler`
 
-*   **Installation URL**: Your Sendy URL (e.g., `https://sendy.yourdomain.com`).
-*   **API Key**: Found in your Sendy Settings.
+---
 
-### 📝 Saved Lists (Optional)
-Instead of typing a List ID every time, you can save your commonly used lists in **Settings**:
-*   Enter them one per line: `List Name, List ID`
-*   Example:
-    ```
-    Main Subscribers, l123abc
-    Test Group, t456def
-    All Lists|l123abc,t456def
-    ```
+## 🚀 Installation
 
-### 👣 Footer & Social Settings
-Customize your newsletter footer globally:
-*   **Footer Logo**: URL to your logo image.
-*   **Copyright Text**: Supports `{year}` placeholder (e.g. `© {year} My Site`).
-*   **Social Links**: Add your Instagram, LinkedIn, X (Twitter), or YouTube URLs. Icons appear automatically.
-*   **"Read More" Link**: Adds a button at the bottom pointing to your blog.
+1.  **Download** the plugin zip file.
+2.  **Upload** to your WordPress site via *Plugins > Add New > Upload Plugin*.
+3.  **Activate** the plugin.
+4.  **Configure** your Sendy details in *Settings > Simple Sendy Bridge*:
+    *   Sendy Installation URL
+    *   API Key
+    *   Default List ID
 
+## 📖 Usage
 
+1.  Navigate to **Simple Sendy Bridge > Create Newsletter**.
+2.  **Select a Banner:** Choose an image from your Media Library.
+3.  **Add Posts:** Search for your articles and click "Add".
+    *   1st Post = **Hero**
+    *   2nd+ Posts = **Grid**
+4.  **Preview:** Check the preview column.
+5.  **Send or Schedule:** Choose to Send Now, Save as Draft (in Sendy), or Schedule for later.
 
-## ☕ Support
+---
 
-If this plugin helps you, please consider buying me a coffee!
+## 🤝 Support
 
-<a href="https://buymeacoffee.com/gunjanjaswal" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" height="40" width="145"></a>
-
-## 📬 Contact
-
-*   **Email**: [hello@gunjanjaswal.me](mailto:hello@gunjanjaswal.me)
-*   **Website**: [gunjanjaswal.me](https://gunjanjaswal.me)
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the GPL-2.0+ License.
+Created by **Gunjan Jaswal**.
+If you like this plugin, consider [Buying Me A Coffee ☕](https://buymeacoffee.com/gunjanjaswal).

@@ -13,6 +13,7 @@ class SSSB_Sendy_API
     private $installation_url;
     private $api_key;
     private $list_id;
+    private $brand_id;
 
     public function __construct()
     {
@@ -20,6 +21,7 @@ class SSSB_Sendy_API
         $this->installation_url = isset($options['installation_url']) ? trailingslashit($options['installation_url']) : '';
         $this->api_key = isset($options['api_key']) ? $options['api_key'] : '';
         $this->list_id = isset($options['list_id']) ? $options['list_id'] : '';
+        $this->brand_id = isset($options['brand_id']) ? $options['brand_id'] : '';
     }
 
     /**
@@ -43,7 +45,7 @@ class SSSB_Sendy_API
             'plain_text' => '',
             'html_text' => '',
             'list_ids' => $this->list_id,
-            'brand_id' => '', // Optional
+            'brand_id' => $this->brand_id, // Optional
             'query_string' => '', // Optional
             'send_campaign' => 0, // 0 for draft, 1 for send
             'api_key' => $this->api_key,

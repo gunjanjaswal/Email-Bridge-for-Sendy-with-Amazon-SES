@@ -15,7 +15,7 @@ class SSSB_Newsletter_Builder
         add_action('admin_menu', array($this, 'add_submenu'));
         add_action('wp_ajax_sssb_search_posts', array($this, 'ajax_search_posts'));
         add_action('wp_ajax_sssb_create_campaign', array($this, 'ajax_create_campaign'));
-        add_action('wp_ajax_sssb_send_test_email', array($this, 'ajax_send_test_email'));
+
     }
 
     public function add_submenu()
@@ -162,31 +162,22 @@ class SSSB_Newsletter_Builder
                     <div class="sssb-card">
                         <h3><?php esc_html_e('Support & Contact', 'simple-sendy-ses-bridge'); ?></h3>
                         <p>
-                            <a href="https://buymeacoffee.com/gunjanjaswal" target="_blank" class="button button-default">
+                            <a href="https://buymeacoffee.com/gunjanjaswal" target="_blank" class="button" style="background-color: #FFDD00 !important; color: #000000 !important; border-color: #FFDD00 !important; font-weight: bold;">
                                 <?php esc_html_e('☕ Buy Me A Coffee', 'simple-sendy-ses-bridge'); ?>
                             </a>
                         </p>
                         <p style="margin-top:15px;">
                             <strong><?php esc_html_e('Email:', 'simple-sendy-ses-bridge'); ?></strong> <a
-                                href="mailto:hello@gunjanjaswal.me">hello@gunjanjaswal.me</a><br>
+                                href="mailto:hello@gunjanjaswal.me" style="color: #2271b1 !important; text-decoration: underline;">hello@gunjanjaswal.me</a><br>
                             <strong><?php esc_html_e('Website:', 'simple-sendy-ses-bridge'); ?></strong> <a
-                                href="https://gunjanjaswal.me" target="_blank">gunjanjaswal.me</a>
+                                href="https://gunjanjaswal.me" target="_blank" style="color: #2271b1 !important; text-decoration: underline;">gunjanjaswal.me</a>
                         </p>
                     </div>
                 </div>
 
                 <!-- Right Column: Preview -->
                 <div class="sssb-col-right">
-                    <div class="sssb-card">
-                        <h2>
-                            <?php esc_html_e('Send Test Email', 'simple-sendy-ses-bridge'); ?>
-                        </h2>
-                        <p>
-                            <?php esc_html_e('Send a test to see how it looks.', 'simple-sendy-ses-bridge'); ?>
-                        </p>
-                        <input type="email" id="sssb-test-email" class="widefat" placeholder="Enter email address" style="margin-bottom: 10px;">
-                        <button id="sssb-send-test" class="button button-secondary"><?php esc_html_e('Send Test', 'simple-sendy-ses-bridge'); ?></button>
-                    </div>
+
 
                     <div class="sssb-card">
                         <h2>
@@ -229,7 +220,7 @@ class SSSB_Newsletter_Builder
 
         foreach ($posts as $post) {
             $thumb_id = get_post_thumbnail_id($post->ID);
-            $thumb_url = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'thumbnail') : '';
+            $thumb_url = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'large') : '';
 
             // Fallback if no thumb
             if (empty($thumb_url))
@@ -266,8 +257,8 @@ class SSSB_Newsletter_Builder
         $post_args = array(
             'post_type'    => 'sssb_campaign',
             'post_title'   => sanitize_text_field($campaign_data['subject']),
-            'post_content' => wp_kses_post($campaign_data['html_text']),
-            'post_status'  => 'publish',
+            'post_content' => $campaign_data['html_text'], // Save full HTML
+            'post_status'  => 'draft',
         );
 
         $post_id = wp_insert_post($post_args);
@@ -289,6 +280,7 @@ class SSSB_Newsletter_Builder
              $timestamp = strtotime($schedule_date);
 
              if (!$timestamp || $timestamp <= current_time('timestamp')) {
+                 wp_delete_post($post_id, true);
                  wp_send_json_error(array('message' => 'Invalid or past date for scheduling.'));
              }
 
@@ -296,6 +288,7 @@ class SSSB_Newsletter_Builder
              
              update_post_meta($post_id, '_sssb_status', 'scheduled');
              update_post_meta($post_id, '_sssb_scheduled_time', $schedule_date);
+             wp_update_post(array('ID' => $post_id, 'post_status' => 'publish'));
              
              wp_send_json_success(array('message' => 'Campaign scheduled successfully for ' . $schedule_date));
 
@@ -306,8 +299,9 @@ class SSSB_Newsletter_Builder
             $api_args = array(
                 'from_name' => sanitize_text_field($campaign_data['from_name']),
                 'from_email' => sanitize_email($campaign_data['from_email']),
+                'reply_to' => sanitize_email($campaign_data['from_email']),
                 'subject' => sanitize_text_field($campaign_data['subject']),
-                'html_text' => wp_kses_post($campaign_data['html_text']), 
+                'html_text' => $campaign_data['html_text'], // Full HTML required for email
                 'plain_text' => sanitize_textarea_field($campaign_data['plain_text']),
                 'list_ids' => sanitize_text_field($campaign_data['list_id']),
                 'send_campaign' => 1
@@ -317,12 +311,12 @@ class SSSB_Newsletter_Builder
             $result = $sendy_api->create_campaign($api_args);
     
             if (is_wp_error($result)) {
-                update_post_meta($post_id, '_sssb_status', 'failed');
-                update_post_meta($post_id, '_sssb_error', $result->get_error_message());
+                wp_delete_post($post_id, true);
                 wp_send_json_error(array('message' => $result->get_error_message()));
             } else {
                 update_post_meta($post_id, '_sssb_status', 'sent');
                 update_post_meta($post_id, '_sssb_sent_time', current_time('mysql'));
+                wp_update_post(array('ID' => $post_id, 'post_status' => 'publish'));
                 wp_send_json_success(array('message' => 'Campaign created and sent successfully!'));
             }
 
@@ -333,8 +327,9 @@ class SSSB_Newsletter_Builder
              $api_args = array(
                 'from_name' => sanitize_text_field($campaign_data['from_name']),
                 'from_email' => sanitize_email($campaign_data['from_email']),
+                'reply_to' => sanitize_email($campaign_data['from_email']),
                 'subject' => sanitize_text_field($campaign_data['subject']),
-                'html_text' => wp_kses_post($campaign_data['html_text']), 
+                'html_text' => $campaign_data['html_text'], // Full HTML required for email
                 'plain_text' => sanitize_textarea_field($campaign_data['plain_text']),
                 'list_ids' => sanitize_text_field($campaign_data['list_id']),
                 'send_campaign' => 0
@@ -344,6 +339,7 @@ class SSSB_Newsletter_Builder
             $result = $sendy_api->create_campaign($api_args);
 
             if (is_wp_error($result)) {
+                 wp_delete_post($post_id, true);
                  wp_send_json_error(array('message' => $result->get_error_message()));
             } else {
                  wp_send_json_success(array('message' => 'Campaign saved as draft in Sendy!'));
@@ -351,35 +347,5 @@ class SSSB_Newsletter_Builder
         }
     }
 
-    public function ajax_send_test_email()
-    {
-        check_ajax_referer('sssb_newsletter_nonce', 'nonce');
 
-        if (!current_user_can('edit_posts')) {
-            wp_send_json_error('Permission denied');
-        }
-
-        $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
-        $html_content = isset($_POST['html']) ? wp_kses_post(wp_unslash($_POST['html'])) : '';
-        $subject = isset($_POST['subject']) ? sanitize_text_field(wp_unslash($_POST['subject'])) : 'Test Newsletter';
-
-        if (!is_email($email)) {
-            wp_send_json_error(array('message' => 'Invalid email address.'));
-        }
-
-        if (empty($html_content)) {
-            wp_send_json_error(array('message' => 'No content to send.'));
-        }
-
-        // Set content type to HTML
-        $headers = array('Content-Type: text/html; charset=UTF-8');
-
-        $result = wp_mail($email, '[TEST] ' . $subject, $html_content, $headers);
-
-        if ($result) {
-            wp_send_json_success(array('message' => 'Test email sent to ' . $email));
-        } else {
-            wp_send_json_error(array('message' => 'Failed to send email. Check your WordPress mail settings.'));
-        }
-    }
 }

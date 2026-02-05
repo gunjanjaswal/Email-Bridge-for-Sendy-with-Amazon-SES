@@ -116,6 +116,40 @@ class SSSB_Core
                 'map_meta_cap' => true,
             )
         );
+
+        // Add custom columns
+        add_filter('manage_sssb_campaign_posts_columns', array($this, 'add_campaign_columns'));
+        add_action('manage_sssb_campaign_posts_custom_column', array($this, 'manage_campaign_columns'), 10, 2);
+    }
+
+    public function add_campaign_columns($columns) {
+        $columns['sssb_status'] = __('Status', 'simple-sendy-ses-bridge');
+        $columns['sssb_scheduled'] = __('Scheduled For', 'simple-sendy-ses-bridge');
+        return $columns;
+    }
+
+    public function manage_campaign_columns($column, $post_id) {
+        switch ($column) {
+            case 'sssb_status':
+                $status = get_post_meta($post_id, '_sssb_status', true);
+                if (!$status) $status = 'draft';
+                
+                $color = '#999';
+                if ($status === 'sent') $color = '#46b450';
+                if ($status === 'scheduled') $color = '#ffb900';
+                
+                echo '<span style="font-weight:bold; color:' . esc_attr($color) . ';">' . esc_html(ucfirst($status)) . '</span>';
+                break;
+
+            case 'sssb_scheduled':
+                $scheduled = get_post_meta($post_id, '_sssb_scheduled_time', true);
+                if ($scheduled) {
+                    echo esc_html($scheduled);
+                } else {
+                    echo '-';
+                }
+                break;
+        }
     }
 
     /**
