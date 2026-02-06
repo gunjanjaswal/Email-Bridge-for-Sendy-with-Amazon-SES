@@ -99,6 +99,40 @@ Failed campaigns will display:
 - **"Invalid API key"** - Check your Sendy settings
 - **"List ID is required"** - Verify your default list ID in settings
 
+### Campaign Stuck at "Preparing to send..." in Sendy?
+
+**Why:** Sendy requires its own cron job to process and send campaigns. Without it, campaigns get queued but never send.
+
+**Quick Fix (Manual Trigger):**
+```
+https://your-sendy-domain.com/scheduled.php?i=1
+```
+Replace `your-sendy-domain.com` with your actual Sendy URL. This manually triggers campaign processing.
+
+**Permanent Fix (Set Up Sendy Cron):**
+
+Add this cron job to your server:
+
+**Via cPanel:**
+1. Go to **cPanel > Cron Jobs**
+2. Set to run every 5 minutes: `*/5 * * * *`
+3. Command:
+   ```bash
+   php /home/yourusername/public_html/sendy/scheduled.php > /dev/null 2>&1
+   ```
+
+**Via SSH:**
+```bash
+crontab -e
+```
+Add this line:
+```bash
+*/5 * * * * php /path/to/sendy/scheduled.php > /dev/null 2>&1
+```
+
+This automatically processes queued campaigns every 5 minutes.
+
+
 
 ---
 

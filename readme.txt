@@ -70,6 +70,20 @@ Failed campaigns will show:
 
 Common errors include missing Reply-To email (now fixed automatically) or invalid Sendy API credentials.
 
+= Campaign stuck at "Preparing to send..." in Sendy? =
+
+This means Sendy's cron job isn't running. Sendy needs its own cron to process campaigns.
+
+**Quick Fix (Manual Trigger):**
+Visit: `https://your-sendy-domain.com/scheduled.php?i=1`
+
+**Permanent Fix (Set Up Sendy Cron):**
+Add this cron job to your server (via cPanel or SSH):
+`*/5 * * * * php /path/to/sendy/scheduled.php > /dev/null 2>&1`
+
+This runs every 5 minutes to automatically process queued campaigns.
+
+
 
 == Screenshots ==
 
