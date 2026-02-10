@@ -10,28 +10,39 @@ Create beautiful, responsive newsletters directly from your WordPress posts and 
 ## ✨ Features
 
 ### 🎨 Visual Newsletter Builder
-*   **Hero + Grid Layout:** Automatically formats your first selected post as a featured "Hero" card, and subsequent posts as a neat **2-column grid** (on desktop).
-*   **Live Preview:** See exactly what your email will look like as you add posts.
+*   **Drag-and-Drop Post Selection:** Search and add posts with a single click.
+*   **Hero + Grid Layout:** First post displays as a featured "Hero" card, subsequent posts in a **2-column grid** (desktop).
+*   **Two Layout Options:** Choose between List view (single column) or Grid view (2-column).
+*   **Live Preview:** See exactly what your email will look like as you build it.
+*   **Banner Upload:** Add custom hero banners via WordPress Media Library.
 
 ### 📱 Mobile-First Responsive Design
-*   **Smart Stacking:** Grid items automatically switch to a **single-column layout** on mobile devices (< 600px).
-*   **Auto-Height:** Cards adjust their height dynamically to fit content, removing awkward whitespace on small screens.
+*   **Smart Stacking:** Grid items automatically switch to **single-column layout** on mobile (< 600px).
+*   **Auto-Height:** Cards adjust dynamically to fit content, removing awkward whitespace.
 *   **Readable Typography:** Optimized font sizes and spacing for mobile reading.
 
 ### 🖼️ Professional Media Handling
-*   **Integrated Banners:** Banner images are fully integrated into the Hero card with rounded corners.
-*   **No-Crop Scaling:** Banners use `height: auto` to ensure 100% of your image content is visible (no heads or text cut off).
-*   **High-Res Thumbnails:** Uses the 'Large' image size to prevent blurriness on retina screens.
+*   **Integrated Banners:** Banner images fully integrated into Hero card with rounded corners.
+*   **No-Crop Scaling:** Banners use `height: auto` to ensure 100% visibility.
+*   **High-Res Thumbnails:** Uses 'Large' image size for retina displays.
 
-### 🛠️ Powerful Admin Tools
-*   **Instant Search:** AJAX search bar to find any post in your database.
-*   **Campaign Management:** 
-    *   **Status Columns:** View `Draft`, `Sent`, or `Scheduled` status directly in the campaign list.
-    *   **Scheduling:** Set a date/time for your campaign, and WP-Cron will trigger the send automatically.
-    *   **Status Indicators:** Color-coded statuses (Green for Sent, Orange for Scheduled).
-    *   **Error Handling:** Failed campaigns show detailed error messages in a dedicated column.
-    *   **One-Click Retry:** Instantly retry failed campaigns with a single button click.
-    *   **Overdue Alerts:** Automatic warnings for scheduled campaigns that didn't send (WP-Cron issues).
+### 📧 Advanced Campaign Management
+*   **Multi-List Support:** Send to multiple Sendy lists with checkboxes (all selected by default).
+*   **Three Send Options:**
+    *   **Save as Draft** - Create draft in Sendy for later editing
+    *   **Send Immediately** - Send campaign right away
+    *   **Schedule** - Set date/time for automatic sending (defaults to current time + 1 hour)
+*   **Test Email:** Preview campaigns in your inbox before sending to subscribers.
+*   **Status Tracking:** View `Draft`, `Sent`, or `Scheduled` status in campaign list.
+*   **Error Handling:** Failed campaigns show detailed error messages in dedicated column.
+*   **One-Click Retry:** Instantly retry failed campaigns with a single button.
+*   **Automatic Recovery:** Overdue scheduled campaigns are automatically detected and sent.
+
+### 🎨 Customizable Footer
+*   **Logo Upload:** Add your brand logo to email footer.
+*   **Copyright Text:** Customize copyright notice.
+*   **Social Media Links:** Add Instagram, LinkedIn, X (Twitter), YouTube links.
+*   **Read More Link:** Direct subscribers to your website or blog.
 
 ### 🏷️ Keywords
 `Sendy` `Amazon SES` `Newsletter Builder` `Email Marketing` `WordPress Newsletter` `Drag and Drop` `Post to Email` `Responsive Email Template` `Email Automation` `Campaign Scheduler`

@@ -122,3 +122,13 @@
         width: 100%;
     }
 }
+
+/* Fix for jQuery UI Datepicker appearing behind elements */
+.ui-datepicker {
+    z-index: 999999 !important;
+}
+
+/* Schedule datetime input width */
+input#sssb-schedule-datetime {
+    width: 266px !important;
+}

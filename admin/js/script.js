@@ -150,6 +150,29 @@ jQuery(document).ready(function ($) {
         }
     });
 
+    // Update datetime when time selectors change
+    $('#sssb-schedule-hour, #sssb-schedule-minute').on('change', function () {
+        updateScheduledDateTime();
+    });
+
+    // Function to combine date and time into hidden input
+    function updateScheduledDateTime() {
+        const selectedDate = $('#sssb-datepicker-inline').datepicker('getDate');
+        if (selectedDate) {
+            const hour = $('#sssb-schedule-hour').val();
+            const minute = $('#sssb-schedule-minute').val();
+
+            // Format: YYYY-MM-DD HH:MM:SS
+            const year = selectedDate.getFullYear();
+            const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+            const day = String(selectedDate.getDate()).padStart(2, '0');
+
+            const datetime = `${year}-${month}-${day} ${hour}:${minute}:00`;
+            $('#sssb-schedule-datetime').val(datetime);
+        }
+    }
+
+
     // Create Campaign
     $('#sssb-create-campaign').on('click', function (e) {
         e.preventDefault();

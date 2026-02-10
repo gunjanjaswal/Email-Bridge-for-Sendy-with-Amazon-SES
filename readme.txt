@@ -96,12 +96,19 @@ This runs every 5 minutes to automatically process queued campaigns.
 
 = 1.0.0 =
 *   Initial Release.
-*   Feature: Visual Builder with Hero + Grid layout.
-*   Feature: Responsive Mobile Stacking.
-*   Feature: Sendy API Integration (Draft/Send/Schedule).
-*   Feature: Custom Admin Columns for Status and Scheduled Time.
-*   Feature: Error Display Column for Failed Campaigns.
-*   Feature: One-Click Retry for Failed Campaigns.
-*   Feature: Automatic Detection and Sending of Overdue Scheduled Campaigns.
+*   Feature: Visual Newsletter Builder with drag-and-drop post selection.
+*   Feature: Hero banner with customizable image upload.
+*   Feature: Two layout options: List view and Grid (2-column) view.
+*   Feature: Responsive email design with mobile-optimized stacking.
 *   Feature: Multi-list support with checkboxes (all lists selected by default).
+*   Feature: Sendy API Integration (Draft/Send/Schedule campaigns).
+*   Feature: Schedule campaigns with datetime picker (defaults to current time + 1 hour).
+*   Feature: Custom Admin Columns showing campaign status and scheduled time.
+*   Feature: Error Display Column for failed campaigns with detailed error messages.
+*   Feature: One-Click Retry button for failed campaigns.
+*   Feature: Automatic detection and sending of overdue scheduled campaigns.
+*   Feature: Test email functionality to preview campaigns before sending.
+*   Feature: Customizable footer with logo, copyright, social media links.
 *   Fix: Properly parse pipe-separated list format (List Name|List ID) to extract IDs.
+*   Fix: Schedule datetime picker with proper z-index for calendar visibility.
+*   Fix: Reply-to email correctly passed for all campaign types.

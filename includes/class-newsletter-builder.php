@@ -132,7 +132,19 @@ class SSSB_Newsletter_Builder
                         
                         <div id="sssb-schedule-options" style="display:none; margin-top: 10px; padding-left: 20px;">
                             <label><?php esc_html_e('Send Date/Time', 'simple-sendy-ses-bridge'); ?></label><br>
-                            <input type="datetime-local" id="sssb-schedule-datetime" class="regular-text">
+                            <?php
+                            // Set default to current time + 1 hour
+                            $default_time = current_time('timestamp') + 3600; // +1 hour
+                            $min_time = current_time('timestamp');
+                            $default_datetime = date('Y-m-d\TH:i', $default_time);
+                            $min_datetime = date('Y-m-d\TH:i', $min_time);
+                            ?>
+                            <input type="datetime-local" 
+                                   id="sssb-schedule-datetime" 
+                                   class="regular-text"
+                                   value="<?php echo esc_attr($default_datetime); ?>"
+                                   min="<?php echo esc_attr($min_datetime); ?>"
+                                   style="position: relative; z-index: 999999;">
                             
                             <?php
                             $timezone = get_option('timezone_string');
