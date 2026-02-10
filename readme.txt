@@ -1,6 +1,6 @@
 === Simple Sendy SES Bridge ===
 Contributors: gunjanjaswal
-Tags: sendy, newsletter, email, ses, marketing, amazon ses, newsletter builder
+Tags: sendy, newsletter, email, amazon-ses, marketing
 Requires at least: 5.8
 Tested up to: 6.9
 Stable tag: 1.0.0
@@ -8,7 +8,7 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://buymeacoffee.com/gunjanjaswal
 
-A powerful, visual newsletter builder for Sendy. Create beautiful, responsive campaigns with a Hero + Grid layout directly from your WordPress content.
+Create beautiful, responsive newsletters for Sendy with a visual builder. Hero + Grid layout, scheduling, and multi-list support.
 
 == Description ==
 
@@ -112,3 +112,6 @@ This runs every 5 minutes to automatically process queued campaigns.
 *   Fix: Properly parse pipe-separated list format (List Name|List ID) to extract IDs.
 *   Fix: Schedule datetime picker with proper z-index for calendar visibility.
 *   Fix: Reply-to email correctly passed for all campaign types.
+*   Security: All inputs properly sanitized and validated.
+*   Security: Using wp_safe_redirect() for secure redirects.
+*   Security: Timezone-aware datetime formatting with wp_date().

@@ -136,8 +136,8 @@ class SSSB_Newsletter_Builder
                             // Set default to current time + 1 hour
                             $default_time = current_time('timestamp') + 3600; // +1 hour
                             $min_time = current_time('timestamp');
-                            $default_datetime = date('Y-m-d\TH:i', $default_time);
-                            $min_datetime = date('Y-m-d\TH:i', $min_time);
+                            $default_datetime = wp_date('Y-m-d\TH:i', $default_time);
+                            $min_datetime = wp_date('Y-m-d\TH:i', $min_time);
                             ?>
                             <input type="datetime-local" 
                                    id="sssb-schedule-datetime" 

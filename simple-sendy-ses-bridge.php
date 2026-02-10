@@ -213,7 +213,7 @@ class SSSB_Core
         $args = array(
             'post_type' => 'sssb_campaign',
             'post_status' => 'publish',
-            'meta_query' => array(
+            'meta_query' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Necessary for filtering scheduled campaigns
                 array(
                     'key' => '_sssb_status',
                     'value' => 'scheduled',
@@ -268,7 +268,7 @@ class SSSB_Core
         $failed_args = array(
             'post_type' => 'sssb_campaign',
             'post_status' => 'publish',
-            'meta_query' => array(
+            'meta_query' => array( // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- Necessary for filtering failed campaigns
                 array(
                     'key' => '_sssb_status',
                     'value' => 'failed',
@@ -304,7 +304,7 @@ class SSSB_Core
      */
     public function handle_manual_send()
     {
-        $action = isset($_GET['action']) ? $_GET['action'] : '';
+        $action = isset($_GET['action']) ? sanitize_text_field(wp_unslash($_GET['action'])) : '';
         
         if ($action !== 'sssb_manual_send' && $action !== 'sssb_retry_send') {
             return;
@@ -318,7 +318,7 @@ class SSSB_Core
         
         $nonce_action = $action === 'sssb_retry_send' ? 'sssb_retry_send_' . $campaign_id : 'sssb_manual_send_' . $campaign_id;
         
-        if (!wp_verify_nonce($_GET['nonce'], $nonce_action)) {
+        if (!wp_verify_nonce(sanitize_text_field(wp_unslash($_GET['nonce'])), $nonce_action)) {
             wp_die('Security check failed');
         }
 
@@ -335,7 +335,7 @@ class SSSB_Core
         $this->send_scheduled_campaign($campaign_id);
 
         // Redirect back
-        wp_redirect(admin_url('edit.php?post_type=sssb_campaign&sent=1'));
+        wp_safe_redirect(admin_url('edit.php?post_type=sssb_campaign&sent=1'));
         exit;
     }
 
