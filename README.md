@@ -32,6 +32,7 @@ Create beautiful, responsive newsletters directly from your WordPress posts and 
     *   **Save as Draft** - Create draft in Sendy for later editing
     *   **Send Immediately** - Send campaign right away
     *   **Schedule** - Set date/time for automatic sending (defaults to current time + 1 hour)
+*   **Auto-Trigger Cron:** Optional setting to automatically trigger Sendy's processing script after sending (great for shared hosting).
 *   **Test Email:** Preview campaigns in your inbox before sending to subscribers.
 *   **Status Tracking:** View `Draft`, `Sent`, or `Scheduled` status in campaign list.
 *   **Error Handling:** Failed campaigns show detailed error messages in dedicated column.

@@ -14,6 +14,7 @@ class SSSB_Sendy_API
     private $api_key;
     private $list_id;
     private $brand_id;
+    private $trigger_cron;
 
     public function __construct()
     {
@@ -22,6 +23,7 @@ class SSSB_Sendy_API
         $this->api_key = isset($options['api_key']) ? $options['api_key'] : '';
         $this->list_id = isset($options['list_id']) ? $options['list_id'] : '';
         $this->brand_id = isset($options['brand_id']) ? $options['brand_id'] : '';
+        $this->trigger_cron = isset($options['trigger_cron']) ? $options['trigger_cron'] : false;
     }
 
     /**
@@ -72,6 +74,12 @@ class SSSB_Sendy_API
         $response_body = wp_remote_retrieve_body($response);
 
         if ('Campaign created' === $response_body || 'Campaign created and now sending' === $response_body) {
+            
+            // Auto-trigger Cron if enabled
+            if ($this->trigger_cron) {
+                $this->trigger_sendy_cron();
+            }
+
             return array(
                 'success' => true,
                 'message' => $response_body,
@@ -106,5 +114,28 @@ class SSSB_Sendy_API
         }
 
         return wp_remote_retrieve_body($response);
+    }
+    /**
+     * Trigger Sendy's scheduled.php script
+     */
+    private function trigger_sendy_cron()
+    {
+        if (empty($this->installation_url)) {
+            return;
+        }
+
+        $cron_url = $this->installation_url . 'scheduled.php';
+
+        // Append Brand ID if available (as requested by user for multi-brand setups)
+        if (!empty($this->brand_id)) {
+            $cron_url = add_query_arg('i', $this->brand_id, $cron_url);
+        }
+
+        // Non-blocking request
+        wp_remote_get($cron_url, array(
+            'blocking' => false,
+            'timeout' => 0.01,
+            'sslverify' => apply_filters('https_local_ssl_verify', false),
+        ));
     }
 }

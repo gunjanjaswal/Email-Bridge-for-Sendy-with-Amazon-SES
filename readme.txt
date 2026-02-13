@@ -3,7 +3,7 @@ Contributors: gunjanjaswal
 Tags: sendy, newsletter, email, amazon-ses, marketing
 Requires at least: 5.8
 Tested up to: 6.9
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Donate link: https://buymeacoffee.com/gunjanjaswal
@@ -28,6 +28,7 @@ Create beautiful, responsive newsletters for Sendy with a visual builder. Hero +
 *   **📅 Advanced Scheduling:** 
     *   Schedule campaigns to send at a specific future time.
     *   **Status Tracking:** Clear admin columns showing "Scheduled", "Sent", or "Draft" status.
+    *   **Auto-Trigger Cron:** Optional setting to automatically trigger Sendy's processing script after sending (great for shared hosting).
     *   **Error Handling:** Failed campaigns display error messages with one-click retry.
     *   **Auto-Recovery:** Overdue campaigns automatically send when you visit the admin page.
 *   **✨ Polished UI:** 
@@ -103,6 +104,7 @@ This runs every 5 minutes to automatically process queued campaigns.
 *   Feature: Multi-list support with checkboxes (all lists selected by default).
 *   Feature: Sendy API Integration (Draft/Send/Schedule campaigns).
 *   Feature: Schedule campaigns with datetime picker (defaults to current time + 1 hour).
+*   Feature: "Auto-Trigger Cron" setting to automatically hit `scheduled.php` after sending (supports `?i=BRAND_ID`).
 *   Feature: Custom Admin Columns showing campaign status and scheduled time.
 *   Feature: Error Display Column for failed campaigns with detailed error messages.
 *   Feature: One-Click Retry button for failed campaigns.
@@ -115,3 +117,4 @@ This runs every 5 minutes to automatically process queued campaigns.
 *   Security: All inputs properly sanitized and validated.
 *   Security: Using wp_safe_redirect() for secure redirects.
 *   Security: Timezone-aware datetime formatting with wp_date().
+

@@ -108,6 +108,18 @@ class SSSB_Admin_Settings
             )
         );
 
+        add_settings_field(
+            'trigger_cron',
+            __('Auto-Trigger Cron', 'simple-sendy-ses-bridge'),
+            array($this, 'render_checkbox_field'),
+            'simple_sendy_bridge',
+            'sssb_main_section',
+            array(
+                'field' => 'trigger_cron',
+                'desc' => __('Automatically trigger Sendy\'s <code>scheduled.php</code> after sending a campaign? Useful if you don\'t have a cron job set up on your server.<br><em>(Will append ?i=BRAND_ID if Brand ID is set)</em>', 'simple-sendy-ses-bridge')
+            )
+        );
+
         // --- Footer & Social Settings ---
         
         add_settings_section(
@@ -163,6 +175,11 @@ class SSSB_Admin_Settings
             // Allow basic text, newlines, and pipes
             $new_input['known_lists'] = wp_strip_all_tags($input['known_lists']);
         }
+        if (isset($input['trigger_cron'])) {
+            $new_input['trigger_cron'] = '1';
+        } else {
+            $new_input['trigger_cron'] = '';
+        }
         return $new_input;
     }
 
@@ -182,6 +199,24 @@ class SSSB_Admin_Settings
             </p>
         <?php endif; ?>
     <?php
+    }
+
+    public function render_checkbox_field($args)
+    {
+        $options = get_option('sssb_settings');
+        $field = $args['field'];
+        $value = isset($options[$field]) ? $options[$field] : '';
+        $desc = isset($args['desc']) ? $args['desc'] : '';
+        ?>
+        <label>
+            <input type="checkbox" name="sssb_settings[<?php echo esc_attr($field); ?>]" value="1" <?php checked('1', $value); ?>>
+            <?php if ($desc): ?>
+                <span class="description">
+                    <?php echo wp_kses_post($desc); ?>
+                </span>
+            <?php endif; ?>
+        </label>
+        <?php
     }
 
     public function render_textarea_field($args)
