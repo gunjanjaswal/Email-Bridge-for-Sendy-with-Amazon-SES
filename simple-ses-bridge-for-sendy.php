@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Simple SES Bridge for Sendy
- * Plugin URI:  https://github.com/gunjanjaswal/Simple-Sendy-SES-Bridge
+ * Plugin URI:  https://github.com/gunjanjaswal/Simple-SES-Bridge-for-Sendy
  * Description: Connects WordPress to Sendy (via Amazon SES) to create and send newsletters from your content.
  * Version:     1.0.0
  * Author:      Gunjan Jaswal
@@ -421,7 +421,7 @@ add_action('plugins_loaded', 'sssb_init');
 add_filter('plugin_row_meta', 'sssb_plugin_row_meta', 10, 2);
 function sssb_plugin_row_meta($links, $file)
 {
-    if (strpos($file, 'simple-sendy-ses-bridge.php') !== false) {
+    if (strpos($file, 'simple-ses-bridge-for-sendy.php') !== false) {
         $new_links = array(
             'buy_coffee' => '<a href="https://buymeacoffee.com/gunjanjaswal" target="_blank" style="color: #d35400; font-weight: bold;">☕ Buy me a coffee</a>'
         );
