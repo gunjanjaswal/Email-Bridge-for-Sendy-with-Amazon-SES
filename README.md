@@ -1,4 +1,4 @@
-# 📧 Simple Sendy SES Bridge
+# 📧 Simple SES Bridge for Sendy
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg) ![WordPress](https://img.shields.io/badge/WordPress-5.8%2B-aaaaaa.svg) ![License](https://img.shields.io/badge/license-GPLv2-green.svg)
 

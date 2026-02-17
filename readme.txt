@@ -12,7 +12,7 @@ Create beautiful, responsive newsletters for Sendy with a visual builder. Hero +
 
 == Description ==
 
-**Simple Sendy SES Bridge** transforms your WordPress dashboard into a professional newsletter creation studio. Forget manual HTML coding—simply search for your posts, drag them into a stunning layout, and send deeply integrated campaigns via Sendy (Amazon SES).
+**Simple SES Bridge for Sendy** transforms your WordPress dashboard into a professional newsletter creation studio. Forget manual HTML coding—simply search for your posts, drag them into a stunning layout, and send deeply integrated campaigns via Sendy (Amazon SES).
 
 ### 🚀 Key Features
 
@@ -43,7 +43,7 @@ Newsletter, Sendy, Amazon SES, Email Marketing, Post to Email, Visual Builder, D
 
 == Installation ==
 
-1.  Upload the plugin files to the `/wp-content/plugins/simple-sendy-ses-bridge` directory, or install the plugin through the WordPress plugins screen directly.
+1.  Upload the plugin files to the `/wp-content/plugins/simple-ses-bridge-for-sendy` directory, or install the plugin through the WordPress plugins screen directly.
 2.  Activate the plugin through the 'Plugins' screen in WordPress.
 3.  Navigate to **Settings > Simple Sendy Bridge** to configure your Sendy options (URL, API Key, List ID).
 4.  Go to **Simple Sendy Bridge > Create Newsletter** to start building!
