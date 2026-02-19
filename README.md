@@ -40,7 +40,8 @@ Create beautiful, responsive newsletters directly from your WordPress posts and 
 *   **Automatic Recovery:** Overdue scheduled campaigns are automatically detected and sent.
 
 ### 🎨 Customizable Footer
-*   **Logo Upload:** Add your brand logo to email footer.
+*   **Custom Text Area:** Add rich text (HTML/Links) in a **highlighted box** above the footer. Great for call-to-actions.
+*   **Logo Upload:** Add your brand logo (automatically links to your website homepage).
 *   **Copyright Text:** Customize copyright notice.
 *   **Social Media Links:** Add Instagram, LinkedIn, X (Twitter), YouTube links.
 *   **Read More Link:** Direct subscribers to your website or blog.

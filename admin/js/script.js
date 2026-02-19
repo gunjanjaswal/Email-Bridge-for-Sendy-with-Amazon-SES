@@ -303,7 +303,7 @@ jQuery(document).ready(function ($) {
             body { margin: 0; padding: 0; background-color: #f1f5f9; font-family: 'Poppins', sans-serif; }
             table, td { border-collapse: collapse; }
             .container { width: 100%; max-width: 680px; margin: auto; background-color: #ffffff; border-radius: 18px; overflow: hidden; box-shadow: 0 10px 34px rgba(0, 0, 0, 0.10); }
-            a { text-decoration: underline; color: #ffffff !important; }
+            a { text-decoration: underline; color: #2271b1; }
             
             /* Mobile Responsive */
             @media screen and (max-width: 600px) {
@@ -393,6 +393,16 @@ jQuery(document).ready(function ($) {
            </div>`;
         }
 
+        // 5b. Custom Text Box (Highlighted)
+        if (settings.footer_custom_text) {
+            html += `
+             <div style="padding: 20px 30px; text-align: center; background-color: #f8fafc; border-top: 1px solid #e2e8f0;">
+                 <div style="font-size: 14px; color: #475569; line-height: 1.6;">
+                     ${settings.footer_custom_text}
+                 </div>
+             </div>`;
+        }
+
         // 6. Footer
         // Ensure settings exist, use defaults to prevent 'loading' errors
         const footerLogo = settings.footer_logo || '';
@@ -408,7 +418,6 @@ jQuery(document).ready(function ($) {
                 ${settings.social_youtube ? `<a href="${settings.social_youtube}" style="text-decoration:none; margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="30" height="30" style="width:30px; height:30px; vertical-align:middle;" /></a>` : ''}
             </div>
             <div>
-                ${settings.footer_custom_text ? `<div style="margin-bottom: 15px; font-size: 14px; color: #94a3b8;">${settings.footer_custom_text}</div>` : ''}
                 <p style="margin: 0 0 10px; font-size: 14px; color: #94a3b8;">${copyright}</p>
                 <p style="margin: 0; font-size: 12px; color: #64748b;">You're receiving this email because you are subscribed.</p>
                 <div style="margin-top: 15px;">

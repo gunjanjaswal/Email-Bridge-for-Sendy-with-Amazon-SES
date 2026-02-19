@@ -31,6 +31,10 @@ Create beautiful, responsive newsletters for Sendy with a visual builder. Hero +
     *   **Auto-Trigger Cron:** Optional setting to automatically trigger Sendy's processing script after sending (great for shared hosting).
     *   **Error Handling:** Failed campaigns display error messages with one-click retry.
     *   **Auto-Recovery:** Overdue campaigns automatically send when you visit the admin page.
+*   **✍️ Custom Footer Area:** 
+    *   Add your own text/HTML above the footer (e.g., "Connect with us").
+    *   Displays in a **highlighted box** for better visibility.
+    *   Supports HTML links and auto-converts newlines to line breaks.
 *   **✨ Polished UI:** 
     *   "Read More" buttons for consistent calls to action.
     *   Equal-height cards on desktop for a symmetrical, professional look.
@@ -110,7 +114,8 @@ This runs every 5 minutes to automatically process queued campaigns.
 *   Feature: One-Click Retry button for failed campaigns.
 *   Feature: Automatic detection and sending of overdue scheduled campaigns.
 *   Feature: Test email functionality to preview campaigns before sending.
-*   Feature: Customizable footer with logo, copyright, social media links.
+*   Feature: Customizable footer with logo (auto-links to site home), copyright, social media links.
+*   Feature: Custom Footer Text with HTML support in a highlighted box.
 *   Fix: Properly parse pipe-separated list format (List Name|List ID) to extract IDs.
 *   Fix: Schedule datetime picker with proper z-index for calendar visibility.
 *   Fix: Reply-to email correctly passed for all campaign types.
