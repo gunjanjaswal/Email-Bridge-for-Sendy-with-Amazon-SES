@@ -137,9 +137,11 @@ class SSSB_Admin_Settings
         register_setting('sssb_settings_group', 'sssb_social_linkedin', 'esc_url_raw');
         register_setting('sssb_settings_group', 'sssb_social_twitter', 'esc_url_raw');
         register_setting('sssb_settings_group', 'sssb_social_youtube', 'esc_url_raw');
+        register_setting('sssb_settings_group', 'sssb_footer_custom_text', 'wp_kses_post'); // Allow HTML
 
         add_settings_field('sssb_footer_logo_url', __('Footer Logo URL', 'simple-ses-bridge-for-sendy'), array($this, 'render_footer_field'), 'simple_sendy_bridge', 'sssb_footer_section', array('field' => 'sssb_footer_logo_url'));
         add_settings_field('sssb_footer_copyright', __('Copyright Text', 'simple-ses-bridge-for-sendy'), array($this, 'render_footer_field'), 'simple_sendy_bridge', 'sssb_footer_section', array('field' => 'sssb_footer_copyright'));
+        add_settings_field('sssb_footer_custom_text', __('Custom Footer Text', 'simple-ses-bridge-for-sendy'), array($this, 'render_textarea_footer_field'), 'simple_sendy_bridge', 'sssb_footer_section', array('field' => 'sssb_footer_custom_text', 'desc' => __('Add custom text before the subscription message. HTML allowed (e.g. &lt;br&gt;, &lt;a href="..."&gt;Link&lt;/a&gt;). Newlines are automatically converted to line breaks.', 'simple-ses-bridge-for-sendy')));
         add_settings_field('sssb_more_articles_link', __('"Read More Articles" Link', 'simple-ses-bridge-for-sendy'), array($this, 'render_footer_field'), 'simple_sendy_bridge', 'sssb_footer_section', array('field' => 'sssb_more_articles_link'));
         
         add_settings_field('sssb_social_instagram', __('Instagram URL', 'simple-ses-bridge-for-sendy'), array($this, 'render_footer_field'), 'simple_sendy_bridge', 'sssb_footer_section', array('field' => 'sssb_social_instagram'));
@@ -151,6 +153,15 @@ class SSSB_Admin_Settings
     public function render_footer_field($args) {
         $option = get_option($args['field']);
         echo '<input type="text" name="' . esc_attr($args['field']) . '" value="' . esc_attr($option) . '" class="regular-text">';
+    }
+
+    public function render_textarea_footer_field($args) {
+        $option = get_option($args['field']);
+        $desc = isset($args['desc']) ? $args['desc'] : '';
+        echo '<textarea name="' . esc_attr($args['field']) . '" rows="4" cols="50" class="large-text">' . esc_textarea($option) . '</textarea>';
+        if ($desc) {
+            echo '<p class="description">' . wp_kses_post($desc) . '</p>';
+        }
     }
 
     public function sanitize_settings($input)

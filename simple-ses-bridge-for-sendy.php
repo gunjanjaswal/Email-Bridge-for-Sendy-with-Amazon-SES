@@ -396,6 +396,7 @@ class SSSB_Core
         wp_localize_script('sssb-admin-script', 'sssb_ajax', array(
             'ajax_url' => admin_url('admin-ajax.php'),
             'nonce' => wp_create_nonce('sssb_newsletter_nonce'),
+            'site_url' => home_url(),
             'known_lists' => $known_lists,
             'settings' => array(
                 'footer_logo' => get_option('sssb_footer_logo_url'),
@@ -405,6 +406,7 @@ class SSSB_Core
                 'social_linkedin' => get_option('sssb_social_linkedin'),
                 'social_twitter' => get_option('sssb_social_twitter'),
                 'social_youtube' => get_option('sssb_social_youtube'),
+                'footer_custom_text' => wp_kses_post(nl2br(get_option('sssb_footer_custom_text'))),
             )
         ));
     }

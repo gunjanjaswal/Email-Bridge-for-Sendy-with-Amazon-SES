@@ -400,7 +400,7 @@ jQuery(document).ready(function ($) {
 
         html += `
         <div style="background-color: #0f172a; padding: 32px 20px 40px; text-align: center; color: #cbd5e1; border-top: 1px solid #1e293b;">
-            ${footerLogo ? `<img src="${footerLogo}" width="110" style="width: 110px; margin-bottom: 20px;" />` : ''}
+            ${footerLogo ? `<a href="${sssb_ajax.site_url}" style="text-decoration:none;"><img src="${footerLogo}" width="110" style="width: 110px; margin-bottom: 20px;" /></a>` : ''}
             <div style="margin-bottom: 20px;">
                 ${settings.social_instagram ? `<a href="${settings.social_instagram}" style="text-decoration:none; margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="30" height="30" style="width:30px; height:30px; vertical-align:middle;" /></a>` : ''}
                 ${settings.social_linkedin ? `<a href="${settings.social_linkedin}" style="text-decoration:none; margin:0 8px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/960px-LinkedIn_logo_initials.png" width="30" height="30" style="width:30px; height:30px; vertical-align:middle;" /></a>` : ''}
@@ -408,8 +408,9 @@ jQuery(document).ready(function ($) {
                 ${settings.social_youtube ? `<a href="${settings.social_youtube}" style="text-decoration:none; margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" width="30" height="30" style="width:30px; height:30px; vertical-align:middle;" /></a>` : ''}
             </div>
             <div>
+                ${settings.footer_custom_text ? `<div style="margin-bottom: 15px; font-size: 14px; color: #94a3b8;">${settings.footer_custom_text}</div>` : ''}
                 <p style="margin: 0 0 10px; font-size: 14px; color: #94a3b8;">${copyright}</p>
-                <p style="margin: 0; font-size: 12px; color: #64748b;">You're receiving this email because you subscribed.</p>
+                <p style="margin: 0; font-size: 12px; color: #64748b;">You're receiving this email because you are subscribed.</p>
                 <div style="margin-top: 15px;">
                     <a href="[unsubscribe]" style="color: #ffffff !important; text-decoration: underline; font-size: 13px;">Unsubscribe</a>
                 </div>
@@ -431,10 +432,10 @@ jQuery(document).ready(function ($) {
                 <tbody>
                     <tr>
                         <td align="center" valign="middle" style="height: 220px; vertical-align: middle; padding: 0; background-color: #f1f5f9; border-top-left-radius:12px; border-top-right-radius:12px;">
-                            ${post.thumbnail ? 
-                            `<img alt="" src="${post.thumbnail}" width="280" style="display:block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; border-top-left-radius:12px; border-top-right-radius:12px;" />` 
-                            : `<div style="height: 220px; display: flex; align-items: center; justify-content: center; color: #94a3b8;">No Image</div>`
-                            }
+                            ${post.thumbnail ?
+                `<img alt="" src="${post.thumbnail}" width="280" style="display:block; width: 100%; max-width: 100%; height: auto; margin: 0 auto; border-top-left-radius:12px; border-top-right-radius:12px;" />`
+                : `<div style="height: 220px; display: flex; align-items: center; justify-content: center; color: #94a3b8;">No Image</div>`
+            }
                         </td>
                     </tr>
                     <tr>
