@@ -64,7 +64,8 @@ class SSSB_Sendy_API
 
         $response = wp_remote_post($endpoint, array(
             'body' => $body,
-            'timeout' => 30,
+            'timeout' => 60, // Increased timeout
+            'sslverify' => false, // Prevent SSL handshake issues
         ));
 
         if (is_wp_error($response)) {
@@ -106,7 +107,9 @@ class SSSB_Sendy_API
         );
 
         $response = wp_remote_post($endpoint, array(
-            'body' => $body
+            'body' => $body,
+            'timeout' => 20,
+            'sslverify' => false,
         ));
 
         if (is_wp_error($response)) {

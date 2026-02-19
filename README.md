@@ -149,8 +149,20 @@ This automatically processes queued campaigns every 5 minutes.
 
 
 ---
-
-## 🤝 Support
+ 
+ ## 📋 Changelog
+ 
+ ### v1.0.0
+ *   **Initial Release**
+ *   **Feature:** Visual Newsletter Builder with drag-and-drop.
+ *   **Feature:** Custom Footer Text in highlighted box (supports HTML/Links).
+ *   **Feature:** Footer logo auto-link to homepage.
+ *   **Feature:** Sendy API Integration with SSL fixes.
+ *   **Feature:** Responsive Grid Layout (Desktop/Mobile).
+ 
+ ---
+ 
+ ## 🤝 Support
 
 Created by **Gunjan Jaswal**.
 If you like this plugin, consider [Buying Me A Coffee ☕](https://buymeacoffee.com/gunjanjaswal).

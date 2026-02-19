@@ -102,6 +102,13 @@ This runs every 5 minutes to automatically process queued campaigns.
 = 1.0.0 =
 *   Initial Release.
 *   Feature: Visual Newsletter Builder with drag-and-drop post selection.
+*   Feature: Custom Footer Text with HTML support in a highlighted box.
+*   Feature: Footer logo automatically links to the site homepage.
+*   Feature: Hero banner with customizable image upload.
+*   Feature: Two layout options: List view and Grid (2-column) view.
+*   Feature: Responsive email design with mobile-optimized stacking.
+*   Feature: Multi-list support with checkboxes (all lists selected by default).
+*   Feature: Sendy API Integration (Draft/Send/Schedule campaigns) with SSL fix for timeouts.
 *   Feature: Hero banner with customizable image upload.
 *   Feature: Two layout options: List view and Grid (2-column) view.
 *   Feature: Responsive email design with mobile-optimized stacking.
